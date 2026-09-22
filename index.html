@@ -1,4 +1,4 @@
-<title>Ronda Fortín Barracas</title>
+﻿<title>Ronda Fortín Barracas</title>
 <style>
   :root{
     --bg:#F4EFE4;
@@ -139,6 +139,10 @@
   .stat{border-left:2px solid var(--red-fill); padding-left:14px}
   .stat b{display:block; font-family:'Anton',sans-serif; font-size:34px; line-height:1}
   .stat span{font-size:13px; color:var(--fg-muted); font-family:'JetBrains Mono',monospace}
+  @media (max-width:600px){
+    .stat-row{flex-direction:column; gap:18px}
+    .stat b{font-size:38px}
+  }
 
   .frame{
     position:relative; aspect-ratio:4/5; border-radius:2px;
@@ -183,6 +187,10 @@
   }
   .pill b{display:block; font-family:'Anton',sans-serif; font-size:38px; color:var(--red); line-height:1}
   .pill span{font-size:13px; color:var(--fg-muted); font-family:'JetBrains Mono',monospace}
+  @media (max-width:600px){
+    .pill-row{flex-direction:column}
+    .qs-text p{font-size:21px}
+  }
 
   /* ---------- testimonios ---------- */
   .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
@@ -378,43 +386,43 @@
             <figcaption>Juegos Suramericanos</figcaption>
           </figure>
           <figure>
-            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block; background:#000">
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
               <source src="Michael%20en%20el%20ojos%20de%20tigre%20XIII%20el%20158.mp4" type="video/mp4">
             </video>
             <figcaption>Ojos de Tigre XIII</figcaption>
           </figure>
           <figure>
-            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block; background:#000">
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
               <source src="entrenando.mp4" type="video/mp4">
             </video>
             <figcaption>Entrenamiento</figcaption>
           </figure>
           <figure>
-            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block; background:#000">
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
               <source src="Examen%20de%20cinturones.mp4" type="video/mp4">
             </video>
             <figcaption>Examen de cinturones</figcaption>
           </figure>
           <figure>
-            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block; background:#000">
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
               <source src="Estrenando%20los%20Paos.mp4" type="video/mp4">
             </video>
             <figcaption>Estrenando los paos</figcaption>
           </figure>
           <figure>
-            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block; background:#000">
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
               <source src="D%C3%ADas%20de%20entrenamiento%20f%C3%ADsico.mp4" type="video/mp4">
             </video>
             <figcaption>Entrenamiento físico</figcaption>
           </figure>
           <figure>
-            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block; background:#000">
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
               <source src="Llenamos%20las%20bolsas.mp4" type="video/mp4">
             </video>
             <figcaption>Llenamos las bolsas</figcaption>
           </figure>
           <figure>
-            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block; background:#000">
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
               <source src="saludo%20final%20de%20la%20clase.mp4" type="video/mp4">
             </video>
             <figcaption>Saludo final de clase</figcaption>
@@ -614,3 +622,4 @@
     if (e.key === 'Escape') closeLightbox();
   });
 </script>
+
