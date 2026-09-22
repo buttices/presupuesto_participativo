@@ -195,7 +195,7 @@
   /* ---------- testimonios ---------- */
   .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
   @media (max-width:720px){ .gallery{grid-template-columns:1fr} }
-  .gallery video{aspect-ratio:9/16; max-height:420px; object-fit:cover}
+  .gallery video{width:100%; aspect-ratio:9/16; max-height:none; object-fit:contain; background:#000}
   .gallery figcaption{
     margin-top:10px; font-size:14px; color:var(--fg-muted);
     font-family:'JetBrains Mono',monospace;
