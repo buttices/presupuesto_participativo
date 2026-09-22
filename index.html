@@ -76,7 +76,9 @@
   /* ---------- header ---------- */
   header{
     position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+    background:var(--bg);
     background:color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter:blur(8px);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -112,7 +114,8 @@
   @media (max-width:860px){ .hero-grid{grid-template-columns:1fr} }
   .hero h1{
     font-size:clamp(48px,7.4vw,104px);
-    line-height:.98;
+    line-height:1.08;
+    margin-top:20px;
   }
   .hero .accent-line{color:var(--red)}
   .hero-sub{
@@ -146,6 +149,7 @@
   }
   .frame .tag{
     font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--fg-muted);
+    background:var(--surface);
     background:color-mix(in srgb, var(--bg) 70%, transparent);
     padding:6px 10px; display:flex; align-items:center; gap:8px;
   }
@@ -179,6 +183,15 @@
   }
   .pill b{display:block; font-family:'Anton',sans-serif; font-size:38px; color:var(--red); line-height:1}
   .pill span{font-size:13px; color:var(--fg-muted); font-family:'JetBrains Mono',monospace}
+
+  /* ---------- testimonios ---------- */
+  .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+  @media (max-width:720px){ .gallery{grid-template-columns:1fr} }
+  .gallery video{aspect-ratio:9/16; max-height:420px; object-fit:cover}
+  .gallery figcaption{
+    margin-top:10px; font-size:14px; color:var(--fg-muted);
+    font-family:'JetBrains Mono',monospace;
+  }
 
   /* ---------- trayectoria: carrusel + lightbox ---------- */
   figure{margin:0}
