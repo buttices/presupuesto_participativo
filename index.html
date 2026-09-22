@@ -1,0 +1,625 @@
+﻿<title>Ronda Fortín Barracas</title>
+<style>
+  :root{
+    --bg:#F4EFE4;
+    --surface:#FBF8F1;
+    --surface-2:#EFE7D6;
+    --fg:#1B1712;
+    --fg-muted:#6B6052;
+    --accent:#8A5C06;
+    --accent-fill:#E8A930;
+    --red:#A3301B;
+    --red-fill:#C4361E;
+    --on-fill:#FBF8F1;
+    --line:#DED4C0;
+    color-scheme:light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1B1712;
+      --surface:#211C16;
+      --surface-2:#2B241C;
+      --fg:#F4EFE4;
+      --fg-muted:#A79C89;
+      --accent:#E8A930;
+      --accent-fill:#E8A930;
+      --red:#FF6B47;
+      --red-fill:#C4361E;
+      --on-fill:#1B1712;
+      --line:#3A3226;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1B1712;
+    --surface:#211C16;
+    --surface-2:#2B241C;
+    --fg:#F4EFE4;
+    --fg-muted:#A79C89;
+    --accent:#E8A930;
+    --accent-fill:#E8A930;
+    --red:#FF6B47;
+    --red-fill:#C4361E;
+    --on-fill:#1B1712;
+    --line:#3A3226;
+  }
+
+  *{box-sizing:border-box}
+  html,body{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:'Archivo',Arial,sans-serif;
+    margin:0;
+    padding-inline:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Anton',Impact,sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    text-wrap:balance;
+    margin:0;
+  }
+  p{margin:0; line-height:1.55}
+  section{scroll-margin-top:84px}
+  .wrap{max-width:1180px; margin-inline:auto; padding-inline:clamp(16px,4vw,64px)}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  .eyebrow{
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+    background:var(--bg);
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-block:16px;
+  }
+  .brand{display:flex; align-items:center; gap:10px}
+  .brand-mark{
+    width:34px; height:34px; border-radius:50%;
+    background:var(--red-fill); color:var(--on-fill);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Anton',sans-serif; font-size:16px; flex:none;
+  }
+  .brand-text{font-family:'Anton',sans-serif; font-size:18px; letter-spacing:.5px}
+  .nav-links{display:flex; gap:22px}
+  .nav-links a{
+    color:var(--fg-muted); text-decoration:none; font-size:13px;
+    font-family:'JetBrains Mono',monospace; letter-spacing:.5px; text-transform:uppercase;
+  }
+  .nav-links a:hover{color:var(--accent)}
+  @media (max-width:720px){ .nav-links{display:none} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding-block:clamp(56px,10vw,120px) clamp(48px,8vw,96px);
+    background:
+      repeating-linear-gradient(-45deg, color-mix(in srgb, var(--fg) 4%, transparent) 0 2px, transparent 2px 34px);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;
+  }
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr} }
+  .hero h1{
+    font-size:clamp(48px,7.4vw,104px);
+    line-height:1.08;
+    margin-top:20px;
+  }
+  .hero .accent-line{color:var(--red)}
+  .hero-sub{
+    margin-top:22px; max-width:52ch; font-size:19px; color:var(--fg-muted);
+  }
+  .hero-cta{
+    margin-top:34px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 24px; font-family:'JetBrains Mono',monospace;
+    font-size:13px; letter-spacing:1px; text-transform:uppercase;
+    text-decoration:none; border-radius:2px; border:1px solid transparent;
+  }
+  .btn-solid{background:var(--red-fill); color:var(--on-fill)}
+  .btn-line{border-color:var(--line); color:var(--fg)}
+
+  .stat-row{
+    display:flex; gap:28px; margin-top:44px; flex-wrap:wrap;
+  }
+  .stat{border-left:2px solid var(--red-fill); padding-left:14px}
+  .stat b{display:block; font-family:'Anton',sans-serif; font-size:34px; line-height:1}
+  .stat span{font-size:13px; color:var(--fg-muted); font-family:'JetBrains Mono',monospace}
+  @media (max-width:600px){
+    .stat-row{flex-direction:column; gap:18px}
+    .stat b{font-size:38px}
+  }
+
+  .frame{
+    position:relative; aspect-ratio:4/5; border-radius:2px;
+    border:1.5px dashed var(--line);
+    background:
+      repeating-linear-gradient(45deg, var(--surface-2) 0 10px, var(--surface) 10px 20px);
+    display:flex; align-items:flex-end; padding:18px;
+  }
+  .frame .tag{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--fg-muted);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--bg) 70%, transparent);
+    padding:6px 10px; display:flex; align-items:center; gap:8px;
+  }
+  .frame svg{width:16px; height:16px; flex:none}
+
+  /* ---------- round heading ---------- */
+  .round-head{
+    display:flex; align-items:center; gap:18px; margin-bottom:36px;
+  }
+  .round-badge{
+    width:56px; height:56px; border-radius:50%; flex:none;
+    border:2px solid var(--red-fill);
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    font-family:'JetBrains Mono',monospace; color:var(--red);
+  }
+  .round-badge b{font-size:20px; line-height:1; font-family:'Anton',sans-serif; color:var(--fg)}
+  .round-badge span{font-size:8px; letter-spacing:1px}
+  .round-head h2{font-size:clamp(30px,4vw,44px)}
+
+  .round{padding-block:clamp(48px,8vw,96px); border-top:1px solid var(--line)}
+  .round-alt{background:var(--surface)}
+
+  /* ---------- quienes somos ---------- */
+  .qs-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center}
+  @media (max-width:860px){ .qs-grid{grid-template-columns:1fr} }
+  .qs-text p{font-size:20px; color:var(--fg-muted); margin-bottom:26px}
+  .qs-text b{color:var(--fg)}
+  .pill-row{display:flex; gap:16px; flex-wrap:wrap}
+  .pill{
+    background:var(--surface-2); border-radius:2px; padding:20px 22px; flex:1; min-width:140px;
+  }
+  .pill b{display:block; font-family:'Anton',sans-serif; font-size:38px; color:var(--red); line-height:1}
+  .pill span{font-size:13px; color:var(--fg-muted); font-family:'JetBrains Mono',monospace}
+  @media (max-width:600px){
+    .pill-row{flex-direction:column}
+    .qs-text p{font-size:21px}
+  }
+
+  /* ---------- testimonios ---------- */
+  .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+  @media (max-width:720px){ .gallery{grid-template-columns:1fr} }
+  .gallery video{aspect-ratio:9/16; max-height:420px; object-fit:cover}
+  .gallery figcaption{
+    margin-top:10px; font-size:14px; color:var(--fg-muted);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  /* ---------- trayectoria: carrusel + lightbox ---------- */
+  figure{margin:0}
+  .carousel-wrap{position:relative}
+  .carousel{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding-bottom:8px; margin:0;
+    scrollbar-width:thin; scrollbar-color:var(--line) transparent;
+  }
+  .carousel figure{flex:0 0 auto; width:min(320px,78vw); scroll-snap-align:start}
+  .carousel .frame{aspect-ratio:1/1}
+  .carousel img{
+    width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block;
+    cursor:zoom-in; transition:opacity .15s;
+  }
+  .carousel img:hover{opacity:.88}
+  .carousel figcaption{
+    margin-top:10px; font-size:14px; color:var(--fg-muted);
+    font-family:'JetBrains Mono',monospace;
+  }
+  .car-btn{
+    position:absolute; top:50%; translate:0 -50%; width:44px; height:44px; border-radius:50%;
+    background:var(--surface); border:1px solid var(--line); color:var(--fg);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; padding:0;
+  }
+  .car-btn.prev{left:-8px}
+  .car-btn.next{right:-8px}
+  @media (max-width:640px){ .car-btn{display:none} }
+
+  .lightbox{
+    position:fixed; inset:0; background:rgba(10,8,6,.92); z-index:100;
+    display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  .lightbox[hidden]{display:none}
+  .lightbox img{max-width:min(1100px,92vw); max-height:88vh; object-fit:contain; border-radius:2px}
+  .lightbox-close{
+    position:absolute; top:20px; right:24px; width:44px; height:44px; border-radius:50%;
+    background:var(--surface); border:1px solid var(--line); color:var(--fg); font-size:18px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0;
+  }
+
+  /* ---------- problema / propuesta ---------- */
+  .vs-grid{display:grid; grid-template-columns:1fr auto 1fr; gap:32px; align-items:start}
+  @media (max-width:780px){ .vs-grid{grid-template-columns:1fr} }
+  .vs-bell{
+    align-self:center; font-family:'Anton',sans-serif; color:var(--fg-muted); font-size:20px;
+    writing-mode:vertical-rl; text-orientation:mixed;
+  }
+  @media (max-width:780px){ .vs-bell{writing-mode:horizontal-tb; text-align:center} }
+  .card{
+    background:var(--surface); border:1px solid var(--line); padding:32px; border-radius:2px;
+  }
+  .card h3{font-size:26px; margin-bottom:12px}
+  .card p{color:var(--fg-muted); font-size:17px}
+  .card.solid{background:var(--red-fill); color:var(--on-fill); border-color:transparent}
+  .card.solid h3, .card.solid p{color:var(--on-fill)}
+  .lede{font-size:clamp(24px,3vw,32px); line-height:1.4; max-width:44ch; margin-bottom:40px}
+  .lede b{color:var(--red)}
+
+  .prop-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px}
+  @media (max-width:780px){ .prop-grid{grid-template-columns:1fr} }
+  .prop-num{
+    font-family:'Anton',sans-serif; font-size:64px; color:var(--red); line-height:1; margin-bottom:8px;
+  }
+
+  /* ---------- beneficiarios ---------- */
+  .ben-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+  @media (max-width:780px){ .ben-grid{grid-template-columns:1fr} }
+  .ben-card{border:1px solid var(--line); padding:28px; border-radius:2px}
+  .ben-card svg{width:28px; height:28px; color:var(--red); margin-bottom:16px}
+  .ben-card h3{font-size:21px; margin-bottom:10px}
+  .ben-card p{color:var(--fg-muted); font-size:16px}
+
+  /* ---------- presupuesto ---------- */
+  table{width:100%; border-collapse:collapse; font-size:17px}
+  thead th{
+    text-align:left; font-family:'JetBrains Mono',monospace; font-size:12px;
+    letter-spacing:1px; text-transform:uppercase; color:var(--fg-muted);
+    padding:14px 12px; border-bottom:2px solid var(--fg);
+  }
+  tbody td{padding:18px 12px; border-bottom:1px solid var(--line)}
+  tbody tr.total td{
+    font-family:'Anton',sans-serif; font-size:20px; border-bottom:none; padding-top:22px;
+  }
+  td.num, th.num{text-align:right; font-family:'JetBrains Mono',monospace}
+  .cap-note{margin-top:18px; font-size:14px; color:var(--fg-muted); font-family:'JetBrains Mono',monospace}
+
+  /* ---------- comunidad ---------- */
+  .comm-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:48px; align-items:center}
+  @media (max-width:860px){ .comm-grid{grid-template-columns:1fr} }
+  .comm-grid p{font-size:19px; color:var(--fg-muted); margin-top:18px}
+
+  /* ---------- cierre ---------- */
+  .final{
+    background:var(--fg); color:var(--bg);
+    padding-block:clamp(56px,9vw,110px);
+  }
+  .final .eyebrow{color:var(--accent-fill)}
+  .final h2{font-size:clamp(40px,6vw,80px); color:var(--bg); margin-top:14px; max-width:16ch}
+  .final-row{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-top:40px; flex-wrap:wrap;
+  }
+  .final-row p{max-width:46ch; color:color-mix(in srgb, var(--bg) 70%, transparent); font-size:18px}
+  footer{
+    padding-block:28px; border-top:1px solid color-mix(in srgb, var(--bg) 20%, transparent);
+    margin-top:40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:color-mix(in srgb, var(--bg) 55%, transparent);
+  }
+</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="brand-mark">LT</div>
+      <div class="brand-text">Leones Team</div>
+    </div>
+    <nav class="nav-links">
+      <a href="#quienes-somos">Grupo</a>
+      <a href="#trayectoria">Trayectoria</a>
+      <a href="#desafio">Desafío</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#presupuesto">Presupuesto</a>
+      <a href="#cierre">Sumate</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Presupuesto Participativo · 2026</p>
+        <h1>Más tatamis<br><span class="accent-line">y protección</span></h1>
+        <p class="hero-sub">El grupo de kickboxing del Club Fortín Barracas — el que no falta nunca — pide los recursos para seguir entrenando seguro y creciendo.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="#presupuesto">Ver el presupuesto</a>
+          <a class="btn btn-line" href="#quienes-somos">Conocer al grupo</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b>2°</b><span>Año de cohorte</span></div>
+          <div class="stat"><b>0</b><span>Faltas del grupo</span></div>
+          <div class="stat"><b>$1.050.000</b><span>Tope por filial</span></div>
+        </div>
+      </div>
+      <img src="nuestro%20espacio.jpeg" alt="El espacio donde entrena el grupo" style="width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:2px; display:block; cursor:zoom-in" onclick="openLightbox(this)">
+    </div>
+  </section>
+
+  <section id="quienes-somos" class="round">
+    <div class="wrap">
+      <div class="round-head">
+        <div class="round-badge"><b>01</b><span>ROUND</span></div>
+        <h2>Quiénes somos</h2>
+      </div>
+      <div class="qs-grid">
+        <div class="qs-text">
+          <p>Segundo año de cohorte del grupo de kickboxing del Club Fortín Barracas, sostenido por el convenio <b>Nueva Oportunidad</b> con la provincia de Santa Fe. Un grupo consolidado que entrena con disciplina, semana a semana.</p>
+          <div class="pill-row">
+            <div class="pill"><b>Sin faltas</b><span>Asistencia sostenida todo el año</span></div>
+            <div class="pill"><b>Nivel alto</b><span>Varios chicos con muy buenas condiciones</span></div>
+          </div>
+        </div>
+        <img src="el%20equipo.jpeg" alt="Foto grupal del equipo" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block; cursor:zoom-in" onclick="openLightbox(this)">
+      </div>
+    </div>
+  </section>
+
+  <section id="trayectoria" class="round round-alt">
+    <div class="wrap">
+      <div class="round-head">
+        <div class="round-badge"><b>02</b><span>ROUND</span></div>
+        <h2>Trayectoria</h2>
+      </div>
+      <p class="lede" style="max-width:60ch">Este año fuimos a vivir los <b>Juegos Suramericanos</b> como espectadores — una experiencia que jerarquizó nuestro vínculo con el deporte — y seguimos sumando exhibiciones.</p>
+      <div class="carousel-wrap">
+        <button class="car-btn prev" type="button" aria-label="Anterior" onclick="document.getElementById('tray-carousel').scrollBy({left:-340,behavior:'smooth'})">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5 8 12l7 7"/></svg>
+        </button>
+        <div class="carousel" id="tray-carousel">
+          <figure>
+            <img src="suramericanos.webp" alt="El grupo en los Juegos Suramericanos" onclick="openLightbox(this)">
+            <figcaption>Juegos Suramericanos</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
+              <source src="Michael%20en%20el%20ojos%20de%20tigre%20XIII%20el%20158.mp4" type="video/mp4">
+            </video>
+            <figcaption>Ojos de Tigre XIII</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
+              <source src="entrenando.mp4" type="video/mp4">
+            </video>
+            <figcaption>Entrenamiento</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
+              <source src="Examen%20de%20cinturones.mp4" type="video/mp4">
+            </video>
+            <figcaption>Examen de cinturones</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
+              <source src="Estrenando%20los%20Paos.mp4" type="video/mp4">
+            </video>
+            <figcaption>Estrenando los paos</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
+              <source src="D%C3%ADas%20de%20entrenamiento%20f%C3%ADsico.mp4" type="video/mp4">
+            </video>
+            <figcaption>Entrenamiento físico</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
+              <source src="Llenamos%20las%20bolsas.mp4" type="video/mp4">
+            </video>
+            <figcaption>Llenamos las bolsas</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="metadata" style="width:100%; aspect-ratio:9/16; object-fit:contain; border-radius:2px; display:block; background:#000">
+              <source src="saludo%20final%20de%20la%20clase.mp4" type="video/mp4">
+            </video>
+            <figcaption>Saludo final de clase</figcaption>
+          </figure>
+        </div>
+        <button class="car-btn next" type="button" aria-label="Siguiente" onclick="document.getElementById('tray-carousel').scrollBy({left:340,behavior:'smooth'})">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="desafio" class="round">
+    <div class="wrap">
+      <div class="round-head">
+        <div class="round-badge"><b>03</b><span>ROUND</span></div>
+        <h2>El desafío</h2>
+      </div>
+      <p class="lede">El grupo creció más rápido que dos recursos clave: <b>tatamis</b> suficientes para entrenar seguros y <b>equipo de protección</b> completo para todos.</p>
+      <div class="vs-grid">
+        <div class="card">
+          <h3>Tatamis</h3>
+          <p>No alcanzan para que todo el grupo entrene y haga sparring al mismo tiempo, de forma segura.</p>
+        </div>
+        <div class="vs-bell">VS</div>
+        <div class="card">
+          <h3>Protección</h3>
+          <p>Ya hay guantes, cabezales, tibiales y paos — falta completar los sets con más protectores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonios" class="round">
+    <div class="wrap">
+      <div class="round-head">
+        <div class="round-badge"><b>04</b><span>ROUND</span></div>
+        <h2>Testimonios</h2>
+      </div>
+      <p class="lede" style="max-width:60ch">En primera persona: qué necesitan para seguir entrenando.</p>
+      <div class="gallery">
+        <figure>
+          <video controls playsinline preload="metadata" style="width:100%; border-radius:2px; display:block; background:#000">
+            <source src="Lucas%20Brolese%20-%20kick%20boxing(1).mp4" type="video/mp4">
+          </video>
+          <figcaption>Lucas Brolese</figcaption>
+        </figure>
+        <figure>
+          <video controls playsinline preload="metadata" style="width:100%; border-radius:2px; display:block; background:#000">
+            <source src="Eluney%20kick(1).mp4" type="video/mp4">
+          </video>
+          <figcaption>Eluney</figcaption>
+        </figure>
+        <figure>
+          <video controls playsinline preload="metadata" style="width:100%; border-radius:2px; display:block; background:#000">
+            <source src="Aixa%20Gomez%20Kick%20Boxing(1).mp4" type="video/mp4">
+          </video>
+          <figcaption>Aixa Gomez</figcaption>
+        </figure>
+      </div>
+      <p class="cap-note" style="margin-top:24px">Coinciden en lo mismo: piso (tatamis) y pesas para entrenar mejor.</p>
+    </div>
+  </section>
+
+  <section id="propuesta" class="round round-alt">
+    <div class="wrap">
+      <div class="round-head">
+        <div class="round-badge"><b>05</b><span>ROUND</span></div>
+        <h2>La propuesta</h2>
+      </div>
+      <div class="prop-grid">
+        <div class="card solid">
+          <div class="prop-num">1</div>
+          <h3>Más tatamis</h3>
+          <p>Ampliar la superficie de entrenamiento para que todo el grupo entrene junto y seguro.</p>
+        </div>
+        <div class="card solid">
+          <div class="prop-num">2</div>
+          <h3>Cinturones de protección</h3>
+          <p>Completar los sets de protección para que cada participante entrene con el equipo adecuado.</p>
+        </div>
+      </div>
+      <p class="cap-note" style="margin-top:24px">Compra coordinada con el equipo de Adolescencias y Juventudes y el CIT, según cotizaciones.</p>
+    </div>
+  </section>
+
+  <section id="beneficiarios" class="round">
+    <div class="wrap">
+      <div class="round-head">
+        <div class="round-badge"><b>06</b><span>ROUND</span></div>
+        <h2>Quiénes se benefician</h2>
+      </div>
+      <div class="ben-grid">
+        <div class="ben-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3-6 7-6s7 2.7 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.3c2.7.4 5.5 2.6 5.5 5.7"/></svg>
+          <h3>El grupo actual</h3>
+          <p>Las y los adolescentes que hoy entrenan kickboxing en el club.</p>
+        </div>
+        <div class="ben-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 3 4 14h6l-1 7 9-11h-6l1-7Z"/></svg>
+          <h3>Los que se sumen</h3>
+          <p>Más tatamis habilitan mayor cupo de entrenamiento seguro.</p>
+        </div>
+        <div class="ben-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6-4.4-4.2 6-.8Z"/></svg>
+          <h3>El club</h3>
+          <p>Un espacio deportivo consolidado, con proyección a exhibiciones y competencias.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="presupuesto" class="round round-alt">
+    <div class="wrap">
+      <div class="round-head">
+        <div class="round-badge"><b>07</b><span>ROUND</span></div>
+        <h2>Presupuesto</h2>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Ítem</th>
+              <th>Cantidad</th>
+              <th class="num">Monto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tatamis — 40 m², 23 mm (Bultín Bull)</td>
+              <td>40 m²</td>
+              <td class="num">$970.000</td>
+            </tr>
+            <tr>
+              <td>Cinturón de protección</td>
+              <td>1</td>
+              <td class="num">$125.000</td>
+            </tr>
+            <tr class="total">
+              <td>Total solicitado</td>
+              <td></td>
+              <td class="num" style="color:var(--red)">$1.095.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cap-note">Tope por filial: $1.050.000 — el total pedido supera el tope en $45.000 · tatamis: seña $490.000 + saldo $480.000 al estar listo.</p>
+    </div>
+  </section>
+
+  <section id="comunidad" class="round">
+    <div class="wrap comm-grid">
+      <img src="hamburgueseada.jpeg" alt="Tercer tiempo del grupo, hamburgueseada" style="width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:2px; display:block; cursor:zoom-in" onclick="openLightbox(this)">
+      <div>
+        <div class="round-head" style="margin-bottom:20px">
+          <div class="round-badge"><b>08</b><span>ROUND</span></div>
+          <h2 style="font-size:clamp(28px,3.6vw,40px)">Más que kickboxing</h2>
+        </div>
+        <p>Cada 15 a 30 días el grupo comparte una hamburgueseada. Así se sostiene la asistencia perfecta y un grupo muy consolidado, con chicas y chicos en muy buenas condiciones deportivas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cierre" class="final">
+    <div class="wrap">
+      <p class="eyebrow">Campana final</p>
+      <h2>Ayudanos a seguir entrenando seguros</h2>
+      <div class="final-row">
+        <p>Un grupo consolidado, sin faltas, que este año vivió los Juegos Suramericanos y sigue sumando exhibiciones, pide tatamis y protección para seguir creciendo.</p>
+        <a class="btn btn-solid" href="mailto:cynthia.pacheco@aldeasinfantiles.org.ar">Escribir al equipo</a>
+      </div>
+      <footer>
+        <span>Club Fortín Barracas</span>
+        <span>Presupuesto Participativo 2026 · Aldeas Infantiles SOS Argentina</span>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox" hidden onclick="if(event.target===this) closeLightbox()">
+  <button class="lightbox-close" type="button" aria-label="Cerrar" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(imgEl){
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightbox-img');
+    lbImg.src = imgEl.currentSrc || imgEl.src;
+    lbImg.alt = imgEl.alt || '';
+    lb.hidden = false;
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').hidden = true;
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
