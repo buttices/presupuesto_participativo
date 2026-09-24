@@ -1,4 +1,9 @@
-﻿<title>Ronda Fortín Barracas</title>
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ronda Fortín Barracas</title>
 <style>
   :root{
     --bg:#F4EFE4;
@@ -210,6 +215,7 @@
     scrollbar-width:thin; scrollbar-color:var(--line) transparent;
   }
   .carousel figure{flex:0 0 auto; width:min(320px,78vw); scroll-snap-align:start}
+  @media (max-width:640px){ .carousel figure{width:100%} }
   .carousel .frame{aspect-ratio:1/1}
   .carousel img{
     width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px; display:block;
@@ -311,6 +317,8 @@
 </style>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+</head>
+<body>
 
 <header>
   <div class="wrap nav">
@@ -638,4 +646,6 @@
     if (e.key === 'Escape') closeLightbox();
   });
 </script>
+</body>
+</html>
 
